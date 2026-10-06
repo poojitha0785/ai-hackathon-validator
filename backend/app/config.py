@@ -6,8 +6,8 @@ class Settings(BaseSettings):
     secret_key:str
     database_url:str
     llm_base_url:str="https://integrate.api.nvidia.com/v1"
-    llm_api_key:str="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"
-    llm_model:str="nemotron-3-super-120b-a12b"
+    llm_api_key:str="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"
+    llm_model:str="nvidia/nemotron-3-super-120b-a12b"
 
     cors_origins:str="http://localhost:5173"
     rate_limit_per_minute:int=60
