@@ -9,7 +9,7 @@ async def analyze(payload):
     s=settings()
     if not s.llm_api_key: return fallback()
     try:
-        async with httpx.AsyncClient(timeout=90) as c:
+        async with httpx.AsyncClient(timeout=20) as c:
             r=await c.post(s.llm_base_url.rstrip("/")+"/chat/completions",headers={"Authorization":f"Bearer {s.llm_api_key}"},json={"model":s.llm_model,"temperature":.1,"response_format":{"type":"json_object"},"messages":[{"role":"system","content":PROMPT},{"role":"user","content":json.dumps(payload)}]})
             r.raise_for_status(); return json.loads(r.json()["choices"][0]["message"]["content"])
     except Exception as e: raise HTTPException(502,f"AI provider error: {type(e).__name__}")
